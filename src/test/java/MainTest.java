@@ -1,6 +1,7 @@
 import org.example.Main;
-import org.example.WordCounter;
+
 import org.example.entity.Employee;
+import org.example.WordCounter;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -11,6 +12,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+import static java.awt.SystemColor.text;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @ExtendWith(ResultAnalyzer.class)
@@ -53,9 +55,9 @@ public class MainTest {
     @DisplayName("findUniques method doğru çalışıyor mu?")
     @Test
     public void testFindUniquesMethod() {
-        Map<Integer, Employee> map = Main.findUniques(employees);
+        Map<Integer, String> map = Main.findUniques(employees);
         assertEquals(map.size(), 4);
-        assertEquals(map.get(1).getFirstname(), "Dogancan");
+        assertEquals(map.get(1), "Dogancan");
     }
 
     @DisplayName("removeDuplicates method doğru çalışıyor mu?")
@@ -70,7 +72,9 @@ public class MainTest {
     @DisplayName("calculatedWord method doğru çalışıyor mu?")
     @Test
     public void testCalculateWordMethod() {
-        Map<String, Integer> map = WordCounter.calculatedWord();
+
+        Map<String, Integer> map;
+        map = WordCounter.calculateWord(String.valueOf(text));
         assertEquals(map.get("which"), 3);
         assertEquals(map.get("turkish"), 2);
         assertEquals(map.get("mustafa"), 3);
